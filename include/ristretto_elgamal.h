@@ -104,7 +104,10 @@ void KeyGen_stage2(
 void TablesGen(
 		const char *filename_pub_1_key,
 		const char *filename_pub_2_key,
-		const char *filename_pub_key
+		const char *filename_pub_key,
+		const char *filename_pub_1_table_format,
+		const char *filename_pub_2_table_format,
+		const char *filename_pub_table_format
 );
 
 void LoadPrivKey(ristretto255_scalar_t *psk, const char *filename_priv_key);
