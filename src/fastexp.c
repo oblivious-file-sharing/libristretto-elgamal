@@ -13,7 +13,7 @@
 */
 int ADJUST_WINDOW = 16;
 
-void AdjustWindow(const in new_window_size){
+void AdjustWindow(const int new_window_size){
 	ADJUST_WINDOW = new_window_size;
 }
 
