@@ -40,7 +40,7 @@ int main() {
 		}
 	}
 	
-	TablesMake("./pub_1.key", "./pub_2.key", "./pub.key", "/table/pub_1_%d.tab", "/table/pub_2_%d.tab", "/table/pub_%d.tab");
+	TablesGen("./pub_1.key", "./pub_2.key", "./pub.key", "/table/pub_1_%d.tab", "/table/pub_2_%d.tab", "/table/pub_%d.tab");
 	
 	return 0;
 }
