@@ -129,7 +129,7 @@ void Rerand_to_cache(ristretto255_point_t ct[60], const fastecexp_state st_pk[60
 
 void Rerand_use_cache(ristretto255_point_t ct[60], ristretto255_point_t cache[60]);
 
-void AdjustWindow(const in new_window_size);
+void AdjustWindow(const int new_window_size);
 
 void
 fastecexp_prepare(const ristretto255_point_t *base, const int exp_len, const int group_slice_len, fastecexp_state *st);
