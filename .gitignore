@@ -1,0 +1,8 @@
+build/
+file_test
+elligator_test
+hintless_test
+utils_test
+elgamal_test
+elgamal_gen
+create_dummy_ciphertext
