@@ -175,6 +175,12 @@ The test file assumes that the tables have been generated in `/table/`. It is re
 
 **A:** The current creation requires a larger stack size, which can be turned on by entering `ulimit -S -s 131072` in the current terminal's session.
 
+## Regulatory issue
+
+This repository is not subject to the U.S. Export Administration Regulation (EAR) because it is publicly available; notifications to U.S. Bureau of Industry and Security (BIS) and National Security Agency (NSA) have been sent. 
+
+For more information about this regulatory issue, see [this post](https://www.eff.org/deeplinks/2019/08/us-export-controls-and-published-encryption-source-code-explained) by Electronic Frontier Foundation (EFF).
+
 ## References
 
 [deR94]: Peter de Rooij, "Efficient exponentiation using precomputation and vector addition chains," in EUROCRYPT'94.
