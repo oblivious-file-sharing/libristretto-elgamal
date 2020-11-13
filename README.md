@@ -90,7 +90,7 @@ Our solution is a direct result of Karosawa encryption, so the security proof of
 
 In addition, Bellare, Boldyreva, and Staddon have a generalized analysis of randomness re-use. ElGamal encryption, which Karosawa encryption is constructed from, is one of the encryption schemes that remain secure in the randomness re-using setting.
 
-We still provide a game-based security proof for reference, which is available here: [link](https://github.com/oblivious-app/compact_elgamal_security_proof/).
+We still provide a game-based security proof for reference, which is available here: [link](https://github.com/oblivious-file-sharing/compact_elgamal_security_proof).
 
 The security proof invokes the hybrid arguments and shows that if an attacker can break the security of our solution, the attacker also has the ability to win the decisional Diffie-Hellman game, a contradiction.
 
