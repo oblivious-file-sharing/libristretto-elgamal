@@ -58,7 +58,7 @@ The combination of Embed-direct and Embed-aux is here:
 
 ## Ciphertext compaction
 
-The library adopts Kaoru Karosawa's multi-recipient public-key encryption with shortened ciphertext to construct a compact encryption scheme with small ciphertext expansion.
+The library adopts Kaoru Kurosawa's multi-recipient public-key encryption with shortened ciphertext to construct a compact encryption scheme with small ciphertext expansion.
 
 ### ◆ Problem ###
 
@@ -66,9 +66,9 @@ Recall that ElGamal encryption's ciphertext consists of two group elements. Conc
 
 This library provides a compact way to encrypt long messages with ~1x expansion, which we now describe.
 
-### ◆ Background: Karosawa encryption ###
+### ◆ Background: Kurosawa encryption ###
 
-We first revisit Karosawa encryption, which is designed for the multi-recipient setting, as follows.
+We first revisit Kurosawa encryption, which is designed for the multi-recipient setting, as follows.
 
 Consider that a sender wants to send `M_1`, `M_2`, ..., `M_n` to receivers `U_1`, `U_2`, ..., `U_n`, respectively, where `Q_1`, `Q_2`, ..., `Q_n` are the receivers' public keys, respectively. The sender can generate one big ciphertext:
 
@@ -78,17 +78,17 @@ Each receive can only obtain the message that the receiver has the private key t
 
 ### ◆ Our solution ###
 
-We can adopt Karosawa encryption to construct a compact encryption for long messages. In our solution, the public key is no longer one point Q, but a sequence of points `Q_1`, `Q_2`, ..., `Q_n`, sampled independently; the private key is also now a sequence of scalar values.
+We can adopt Kurosawa encryption to construct a compact encryption for long messages. In our solution, the public key is no longer one point Q, but a sequence of points `Q_1`, `Q_2`, ..., `Q_n`, sampled independently; the private key is also now a sequence of scalar values.
 
-Now, suppose that we have a long message, the encoding of which comprises n points. We can sample one random value r and encrypt the message in the Karosawa's manner, as if each point of the public key is for an independent receiver.
+Now, suppose that we have a long message, the encoding of which comprises n points. We can sample one random value r and encrypt the message in the Kurosawa's manner, as if each point of the public key is for an independent receiver.
 
 The resultant encryption scheme has `1 + 1/n` ciphertext expansion, a roughly reduction by half. By setting `n = 59`, we have a ciphertext of 60 points, not 118 points in the traditional ElGamal encryption.
 
 ### ◆ Security proof ###
 
-Our solution is a direct result of Karosawa encryption, so the security proof of Karosawa encryption applies to our method.
+Our solution is a direct result of Kurosawa encryption, so the security proof of Kurosawa encryption applies to our method.
 
-In addition, Bellare, Boldyreva, and Staddon have a generalized analysis of randomness re-use. ElGamal encryption, which Karosawa encryption is constructed from, is one of the encryption schemes that remain secure in the randomness re-using setting.
+In addition, Bellare, Boldyreva, and Staddon have a generalized analysis of randomness re-use. ElGamal encryption, which Kurosawa encryption is constructed from, is one of the encryption schemes that remain secure in the randomness re-using setting.
 
 We still provide a game-based security proof for reference, which is available here: [link](https://github.com/oblivious-file-sharing/compact_elgamal_security_proof).
 
