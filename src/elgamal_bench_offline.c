@@ -20,7 +20,7 @@ void bench(int BLOCK, fastecexp_state *st_pk1) {
 
 	ristretto_elgamal_encode(output, input, 1827 * BLOCK - 1, 1827 * BLOCK);
 
-	ristretto255_point_t *ct_rand = new ristretto255_point_t[60 * BLOCK * 1000];
+	ristretto255_point_t *ct_rand = malloc(sizeof(ristretto255_point_t) * 60 * BLOCK * 1000);
 	clock_gettime(CLOCK_REALTIME, &t_start);
 	#pragma omp parallel for
 	for (int pp = 0; pp < 1000; pp++) {
@@ -33,6 +33,7 @@ void bench(int BLOCK, fastecexp_state *st_pk1) {
 		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) * 1.0 / 1000000000);
 
 	fclose(rand_src);
+	free(ct_rand);
 }
 
 int main() {
