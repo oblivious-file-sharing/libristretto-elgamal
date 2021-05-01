@@ -7,15 +7,14 @@
 * This executable program loads the key and the map and precomputes g^r
 */
 
+void bench(int BLOCK, fastecexp_state *st_pk1);
+
 void bench(int BLOCK, fastecexp_state *st_pk1) {
 	ristretto255_point_t output[59 * BLOCK];
 	uint8_t input[1827 * BLOCK];
-	uint8_t recovered[1827 * BLOCK];
-	size_t actual_size;
 
 	FILE *rand_src = fopen("/dev/urandom", "rb");
 	fread(input, 1827 * BLOCK - 1, 1, rand_src);
-	fclose(rand_src);
 
 	struct timespec t_start, t_end;
 
@@ -31,7 +30,9 @@ void bench(int BLOCK, fastecexp_state *st_pk1) {
 	}
 	clock_gettime(CLOCK_REALTIME, &t_end);
 	printf("\033[0;32m[INFO]\033[0m Rerand 1000 ciphertexts of %d blocks, offline time: %lf seconds.\n", BLOCK,
-		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) / 1000000000.);
+		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) * 1.0 / 1000000000);
+
+	fclose(rand_src);
 }
 
 int main() {

@@ -79,7 +79,7 @@ int main() {
 		ristretto_elgamal_encode(output, input, 1827 * BLOCK - 1, 1827 * BLOCK);
 	clock_gettime(CLOCK_REALTIME, &t_end);
 	printf("\033[0;32m[INFO]\033[0m Encoding time: %lf.\n",
-		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) / 1000000000.);
+		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) * 1.0 / 1000000000);
 
 	memset(recovered, 0, 1827 * BLOCK);
 	clock_gettime(CLOCK_REALTIME, &t_start);
@@ -87,7 +87,7 @@ int main() {
 		ristretto_elgamal_decode(recovered, output, 59 * BLOCK, &actual_size, 1827 * BLOCK);
 	clock_gettime(CLOCK_REALTIME, &t_end);
 	printf("\033[0;32m[INFO]\033[0m Decoding time: %lf.\n",
-		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) / 1000000000.);
+		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) * 1.0 / 1000000000);
 
 	for (int i = 0; i < 1827 * BLOCK - 1; i++) {
 		if (recovered[i] != input[i]) {
@@ -109,7 +109,7 @@ int main() {
 	}
 	clock_gettime(CLOCK_REALTIME, &t_end);
 	printf("\033[0;32m[INFO]\033[0m Encryption time: %lf.\n",
-		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) / 1000000000.);
+		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) * 1.0 / 1000000000);
 
 	ristretto255_point_t ct_rand[60 * BLOCK];
 	clock_gettime(CLOCK_REALTIME, &t_start);
@@ -121,7 +121,7 @@ int main() {
 	}
 	clock_gettime(CLOCK_REALTIME, &t_end);
 	printf("\033[0;32m[INFO]\033[0m Rerand, offline time: %lf.\n",
-		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) / 1000000000.);
+		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) * 1.0 / 1000000000);
 
 	clock_gettime(CLOCK_REALTIME, &t_start);
 	for (int pp = 0; pp < 10; pp++) {
@@ -132,7 +132,7 @@ int main() {
 	}
 	clock_gettime(CLOCK_REALTIME, &t_end);
 	printf("\033[0;32m[INFO]\033[0m Rerand, online time: %lf.\n",
-		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) / 1000000000.);
+		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) * 1.0 / 1000000000);
 
 	clock_gettime(CLOCK_REALTIME, &t_start);
 	for (int pp = 0; pp < 10; pp++) {
@@ -143,7 +143,7 @@ int main() {
 	}
 	clock_gettime(CLOCK_REALTIME, &t_end);
 	printf("\033[0;32m[INFO]\033[0m Decryption time: %lf.\n",
-		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) / 1000000000.);
+		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) * 1.0 / 1000000000);
 	memset(recovered, 0, 1827 * BLOCK);
 	ristretto_elgamal_decode(recovered, recovered_output, 59 * BLOCK, &actual_size, 1827 * BLOCK);
 	for (int i = 0; i < 1827 * BLOCK - 1; i++) {
@@ -170,7 +170,7 @@ int main() {
 	}
 	clock_gettime(CLOCK_REALTIME, &t_end);
 	printf("\033[0;32m[INFO]\033[0m Rerandomization time: %lf.\n",
-		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) / 1000000000.);
+		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) * 1.0 / 1000000000);
 #pragma omp parallel for
 	for (int i = 0; i < BLOCK; i++) {
 		Decrypt(&recovered_output[i * 59], &ct_rerand[i * 60], sk_1);
@@ -201,7 +201,7 @@ int main() {
 	}
 	clock_gettime(CLOCK_REALTIME, &t_end);
 	printf("\033[0;32m[INFO]\033[0m Serialization -- malicious time: %lf.\n",
-		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) / 1000000000.);
+		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) * 1.0 / 1000000000);
 
 	/*
 	* then recover it back.
@@ -212,7 +212,7 @@ int main() {
 	}
 	clock_gettime(CLOCK_REALTIME, &t_end);
 	printf("\033[0;32m[INFO]\033[0m Deserialization -- malicious time: %lf.\n",
-		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) / 1000000000.);
+		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) * 1.0 / 1000000000);
 
 #pragma omp parallel for
 	for (int i = 0; i < BLOCK; i++) {
@@ -229,7 +229,7 @@ int main() {
 	}
 	clock_gettime(CLOCK_REALTIME, &t_end);
 	printf("\033[0;32m[INFO]\033[0m Serialization -- honest time: %lf.\n",
-		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) / 1000000000.);
+		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) * 1.0 / 1000000000);
 
 	/*
 	* then recover it back.
@@ -240,7 +240,7 @@ int main() {
 	}
 	clock_gettime(CLOCK_REALTIME, &t_end);
 	printf("\033[0;32m[INFO]\033[0m Deserialization -- honest time: %lf.\n",
-		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) / 1000000000.);
+		   t_end.tv_sec - t_start.tv_sec + (t_end.tv_nsec - t_start.tv_nsec) * 1.0 / 1000000000);
 
 #pragma omp parallel for
 	for (int i = 0; i < BLOCK; i++) {
