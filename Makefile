@@ -76,7 +76,7 @@ RECOMPONENTS = $(LIBCOMPONENTS) $(BUILD_OBJ)/ristretto_elgamal_utils.o \
 # components needed by the ristretto_gen_tables binary
 GENCOMPONENTS = $(COMPONENTS) $(BUILD_OBJ)/ristretto_gen_tables.o
 
-all: lib elligator_test utils_test hintless_test file_test elgamal_test elgamal_gen create_dummy_ciphertext
+all: lib elligator_test utils_test hintless_test file_test elgamal_test elgamal_gen create_dummy_ciphertext elgamal_bench_offline
 
 # Create all the build subdirectories
 $(BUILD_OBJ)/timestamp:
@@ -136,6 +136,9 @@ elgamal_test: $(RECOMPONENTS) $(BUILD_OBJ)/elgamal_test.o
 	$(LD) -o $@ $^ $(LDFLAGS)
 
 create_dummy_ciphertext: $(RECOMPONENTS) $(BUILD_OBJ)/create_dummy_ciphertext.o
+	$(LD) -o $@ $^ $(LDFLAGS)
+
+elgamal_bench_offline: $(RECOMPONENTS) $(BUILD_OBJ)/elgamal_bench_offline.o
 	$(LD) -o $@ $^ $(LDFLAGS)
 
 # Test suite: requires Rust is installed

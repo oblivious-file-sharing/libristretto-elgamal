@@ -1,3 +1,6 @@
+.DS_Store
+.idea
+
 build/
 file_test
 elligator_test
