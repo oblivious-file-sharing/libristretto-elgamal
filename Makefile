@@ -26,7 +26,7 @@ WARNFLAGS = -pedantic -Wall -Wextra -Werror -Wunreachable-code \
 	 -Wmissing-declarations -Wunused-function -Wno-overlength-strings -Wno-unused-result $(EXWARN)
 
 INCFLAGS  = -Iinclude -Isrc -Isrc/arch/$(ARCH)
-LANGFLAGS = -std=c99 -fno-strict-aliasing
+LANGFLAGS = -std=c11 -fno-strict-aliasing
 GENFLAGS  = -ffunction-sections -fdata-sections -fomit-frame-pointer -fPIC -fopenmp
 OFLAGS   ?= -O2
 
