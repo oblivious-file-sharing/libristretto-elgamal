@@ -33,7 +33,7 @@ We identify two methods to distinguish the original message among these eight pr
 
 - **Embed-direct.** Instead of encoding the message directly, we encode the message concatenated with its hash value. Here, the hash function is collision-resistant (like, the first 80 bits of SHA-256 in the random oracle model). This preprocessing allows us to identify the original message among the eight preimages, having a computational guarantee from the collision resistance. The space utilization of this approach is about 68%.
 
-- **Embed-aux.** Another solution is to externally store auxiliary information about which one out of the eight preimages the original message is, where the auxiliary information for a single message will be of three bits. The problem with this solution is that we cannot construct rerandomizable encryption directly because of the auxiliary information is now homeless. However, if the auxiliary information is stored, the space utilization can reach 98%.
+- **Embed-aux.** Another solution is to externally store auxiliary information about which one out of the eight preimages the original message is, where the auxiliary information for a single message will be of three bits. The problem with this solution is that we cannot construct rerandomizable encryption directly because the auxiliary information is now homeless. However, if the auxiliary information is stored, the space utilization can reach 98%.
 
 Our solution is to combine Embed-direct and Embed-aux. We encode 58 original messages into 58 points in Embed-aux and then encode the auxiliary information of these 58 points into one point in Embed-direct. The resultant sequence of 59 points now can be uniquely decoded and does not require auxiliary information to be stored elsewhere.
 
